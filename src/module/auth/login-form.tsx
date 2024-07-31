@@ -8,11 +8,16 @@ import {
 } from "@src/module/common";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { login, LoginPayload } from "./auth-service";
 
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
+
+async function action(payload: LoginPayload) {
+  const res = await login(payload);
+}
 
 export function LoginForm() {
   const {
@@ -27,15 +32,12 @@ export function LoginForm() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log({ data, errors });
-  };
+  const onSubmit = handleSubmit((data) => {
+    action(data);
+  });
 
   return (
-    <form
-      className="card card-body bg-neutral"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="card card-body bg-neutral" onSubmit={onSubmit}>
       <ControlledTextInput
         name="email"
         control={control}
