@@ -9,6 +9,7 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { register, RegisterPayload } from "./auth-service";
+import { AuthRoute } from "./route";
 
 type FormSchema = z.infer<typeof formSchema>;
 const formSchema = z.object({
@@ -50,7 +51,7 @@ export function RegisterForm() {
   });
 
   return (
-    <form className="card card-body bg-neutral" onSubmit={onSubmit}>
+    <form className="card card-body bg-neutral max-w-lg" onSubmit={onSubmit}>
       <ControlledTextInput
         label="Display Name (optional)"
         name="displayName"
@@ -98,6 +99,9 @@ export function RegisterForm() {
       />
 
       <Button>Sign Up</Button>
+      <AuthRoute.Login.Link className="btn btn-outline">
+        Sign In
+      </AuthRoute.Login.Link>
       <pre>{JSON.stringify(errors, null, 2)}</pre>
     </form>
   );
