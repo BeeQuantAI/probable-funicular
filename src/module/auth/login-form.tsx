@@ -43,8 +43,13 @@ export function LoginForm() {
         name="email"
         control={control}
         leftElement={<Icon icon="person" />}
+        autoComplete="username"
       />
-      <ControlledPasswordInput name="password" control={control} />
+      <ControlledPasswordInput
+        name="password"
+        control={control}
+        autoComplete="current-password"
+      />
 
       <Button>Sign In</Button>
       <AuthRoute.Register.Link className="btn btn-outline">

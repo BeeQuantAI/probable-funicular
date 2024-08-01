@@ -1,8 +1,21 @@
 "use server";
+import {
+  CreateUserInput,
+  getServerGqlClient,
+  graphql,
+} from "@src/module/graphql";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { z } from "zod";
+import { AuthRoute } from "./route";
 
-import { CreateUserInput, getServerGqlClient, gql } from "@src/module/graphql";
+const authResultSchema = z.object({
+  code: z.number(),
+  message: z.string(),
+  data: z.string(),
+});
 
-const loginMutation = gql(`
+const loginMutation = graphql(`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       code
@@ -18,29 +31,32 @@ export type LoginPayload = {
 };
 export async function login(payload: LoginPayload) {
   const gqlClient = await getServerGqlClient();
-
   const response = await gqlClient.request(loginMutation, payload);
 
-  console.log("login response", { response });
+  const data = authResultSchema.parse(response.login);
+  cookies().set("token", data.data);
+
+  redirect("/");
 }
 
-const registerMutation = gql(`
+const registerMutation = graphql(`
   mutation Register($input: CreateUserInput!) {
     register(input: $input) {
       code
       message
-      data
     }
   }
 `);
 
 export type RegisterPayload = CreateUserInput;
-export async function register(payload: RegisterPayload) {
+export async function register(input: RegisterPayload) {
   const gqlClient = await getServerGqlClient();
-
   const response = await gqlClient.request(registerMutation, {
-    input: payload,
+    input,
   });
 
-  console.log("register response", { response });
+  const data = authResultSchema.parse(response.register);
+
+  // I don't [ads-friendly-content] know if this data is valid or not so screw it
+  redirect(AuthRoute.Login.Path);
 }
