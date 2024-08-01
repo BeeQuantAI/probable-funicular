@@ -1,31 +1,26 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Button,
   ControlledPasswordInput,
   ControlledTextInput,
   Icon,
 } from "@src/module/common";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { login, LoginPayload } from "./auth-service";
-import { AuthRoute } from "./route";
-import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
 
-async function action(payload: LoginPayload) {
-  const res = await login(payload);
-}
-
 export function LoginForm() {
   const {
     handleSubmit,
     control,
     formState: { errors },
+    setError,
   } = useForm({
     defaultValues: {
       email: "",
@@ -34,7 +29,17 @@ export function LoginForm() {
     resolver: zodResolver(formSchema),
   });
 
+  async function action(payload: LoginPayload) {
+    const res = await login(payload);
+
+    if (res?.error) {
+      console.log(res.error);
+      setError("root", { message: res.error });
+    }
+  }
+
   const onSubmit = handleSubmit((data) => {
+    console.log("wtf", data);
     action(data);
   });
 
@@ -43,6 +48,10 @@ export function LoginForm() {
       <div className=" mx-auto h-full">
         <h2 className="text-2xl font-semibold mb-2 text-center">Login</h2>
         <form onSubmit={onSubmit}>
+          {errors.root && (
+            <span className="text-error">{errors.root.message}</span>
+          )}
+
           <div className="mb-4">
             <ControlledTextInput
               name="email"

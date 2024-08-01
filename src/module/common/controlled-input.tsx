@@ -20,6 +20,7 @@ export function ControlledTextInput<TFieldValues extends object>({
 }: ControlledInputProps<TFieldValues>) {
   const {
     field: { ref, ...field },
+    fieldState: { error },
   } = useController({
     name,
     control,
@@ -32,6 +33,8 @@ export function ControlledTextInput<TFieldValues extends object>({
         <input className="grow" {...props} {...field} />
         {!!rightElement && rightElement}
       </div>
+
+      {error && <span className="text-error">{error.message}</span>}
     </label>
   );
 }
@@ -48,6 +51,7 @@ export function ControlledPasswordInput<TFieldValues extends object>({
 
   const {
     field: { ref, ...field },
+    fieldState: { error },
   } = useController({
     name,
     control,
@@ -73,6 +77,8 @@ export function ControlledPasswordInput<TFieldValues extends object>({
           </button>
         )}
       </div>
+
+      {error && <span className="text-error">{error.message}</span>}
     </label>
   );
 }

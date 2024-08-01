@@ -31,12 +31,21 @@ export type LoginPayload = {
 };
 export async function login(payload: LoginPayload) {
   const gqlClient = await getServerGqlClient();
-  const response = await gqlClient.request(loginMutation, payload);
+  const { login } = await gqlClient.request(loginMutation, payload);
 
-  const data = authResultSchema.parse(response.login);
-  cookies().set("token", data.data);
+  console.log(login);
 
-  redirect("/");
+  switch (login.code) {
+    case 200:
+      const data = authResultSchema.parse(login);
+      cookies().set("token", data.data);
+      redirect("/");
+
+    case 10003:
+      return {
+        error: login.message,
+      };
+  }
 }
 
 const registerMutation = graphql(`
@@ -51,12 +60,20 @@ const registerMutation = graphql(`
 export type RegisterPayload = CreateUserInput;
 export async function register(input: RegisterPayload) {
   const gqlClient = await getServerGqlClient();
-  const response = await gqlClient.request(registerMutation, {
+  const { register } = await gqlClient.request(registerMutation, {
     input,
   });
 
-  const data = authResultSchema.parse(response.register);
+  switch (register.code) {
+    case 200:
+      // I don't [ads-friendly-content] know if this data is valid or not so screw it
+      redirect(AuthRoute.Login.Path);
 
-  // I don't [ads-friendly-content] know if this data is valid or not so screw it
-  redirect(AuthRoute.Login.Path);
+    case 10004:
+    case 10005:
+    default:
+      return {
+        error: register.message,
+      };
+  }
 }

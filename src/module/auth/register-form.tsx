@@ -22,15 +22,12 @@ const formSchema = z.object({
   ref: z.string(),
 });
 
-async function action(payload: RegisterPayload) {
-  const res = await register(payload);
-}
-
 export function RegisterForm() {
   const {
     handleSubmit,
     control,
     formState: { errors },
+    setError,
   } = useForm<FormSchema>({
     defaultValues: {
       displayName: "",
@@ -44,6 +41,14 @@ export function RegisterForm() {
     resolver: zodResolver(formSchema),
   });
 
+  async function action(payload: RegisterPayload) {
+    const res = await register(payload);
+
+    if (res.error) {
+      setError("root", { message: res.error });
+    }
+  }
+
   const onSubmit = handleSubmit((data) => {
     console.log(data);
     const { confirmPassword, realName, mobile, ...filteredData } = data;
@@ -52,6 +57,8 @@ export function RegisterForm() {
 
   return (
     <form className="card card-body bg-neutral max-w-lg" onSubmit={onSubmit}>
+      {errors.root && <span className="text-error">{errors.root.message}</span>}
+
       <ControlledTextInput
         label="Display Name (optional)"
         name="displayName"
@@ -102,7 +109,6 @@ export function RegisterForm() {
       <AuthRoute.Login.Link className="btn btn-outline">
         Sign In
       </AuthRoute.Login.Link>
-      <pre>{JSON.stringify(errors, null, 2)}</pre>
     </form>
   );
 }
