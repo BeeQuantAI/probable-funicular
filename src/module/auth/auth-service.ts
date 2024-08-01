@@ -37,7 +37,7 @@ export async function login(payload: LoginPayload) {
     case 200:
       const data = authResultSchema.parse(login);
       cookies().set("token", data.data);
-      redirect("/");
+      redirect("/dashboard");
 
     case 10003:
       return {
