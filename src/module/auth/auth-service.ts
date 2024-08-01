@@ -75,3 +75,18 @@ export async function register(input: RegisterPayload) {
       };
   }
 }
+
+const getUserInfoQuery = graphql(`
+  query getUserInfo {
+    getUserInfo {
+      id
+      displayName
+    }
+  }
+`);
+export async function getUserInfo() {
+  const gqlClient = await getServerGqlClient();
+  const { getUserInfo } = await gqlClient.request(getUserInfoQuery);
+
+  return getUserInfo;
+}

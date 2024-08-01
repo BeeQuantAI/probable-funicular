@@ -1,6 +1,8 @@
+import { AuthProvider } from "@src/module/auth/auth-provider";
+
 type Props = {
   children: React.ReactNode;
 };
-export default function Layout({ children }: Props) {
-  return <div>{children}</div>;
+export default async function Layout({ children }: Props) {
+  return <AuthProvider>{children}</AuthProvider>;
 }
