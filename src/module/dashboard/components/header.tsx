@@ -1,5 +1,6 @@
 "use client";
 import { Icon } from "@src/module/common";
+import { ThemeSwitcher } from "@src/module/system";
 // import BellIcon from "@heroicons/react/24/outline/BellIcon";
 // import Bars3Icon from "@heroicons/react/24/outline/Bars3Icon";
 // import MoonIcon from "@heroicons/react/24/outline/MoonIcon";
@@ -21,20 +22,7 @@ function Header() {
       </div>
 
       <div className="flex-none">
-        {/* Light and dark theme selection toggle
-        <label className="swap">
-          <input type="checkbox" />
-          <SunIcon
-            data-set-theme="light"
-            data-act-class="ACTIVECLASS"
-            className={`fill-current w-6 h-6 ${currentTheme === "dark" ? "swap-on" : "swap-off"}`}
-          />
-          <MoonIcon
-            data-set-theme="dark"
-            data-act-class="ACTIVECLASS"
-            className={`fill-current w-6 h-6 ${currentTheme === "light" ? "swap-on" : "swap-off"}`}
-          />
-        </label> */}
+        <ThemeSwitcher />
       </div>
     </div>
   );
