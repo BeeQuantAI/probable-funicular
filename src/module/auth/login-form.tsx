@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { login, LoginPayload } from "./auth-service";
 import { AuthRoute } from "./route";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -38,24 +39,48 @@ export function LoginForm() {
   });
 
   return (
-    <form className="card card-body bg-neutral max-w-lg" onSubmit={onSubmit}>
-      <ControlledTextInput
-        name="email"
-        control={control}
-        leftElement={<Icon icon="person" />}
-        autoComplete="username"
-      />
-      <ControlledPasswordInput
-        name="password"
-        control={control}
-        autoComplete="current-password"
-      />
+    <div className="card mx-auto w-full max-w-5xl shadow-slate-500 dark:shadow-sky-400  shadow-2xl min-h-96 py-4 flex justify-center items-center">
+      <div className=" mx-auto h-full">
+        <h2 className="text-2xl font-semibold mb-2 text-center">Login</h2>
+        <form onSubmit={onSubmit}>
+          <div className="mb-4">
+            <ControlledTextInput
+              name="email"
+              control={control}
+              leftElement={<Icon icon="person" />}
+              autoComplete="username"
+            />
 
-      <Button>Sign In</Button>
-      <AuthRoute.Register.Link className="btn btn-outline">
-        Create Account
-      </AuthRoute.Register.Link>
-      <pre>{JSON.stringify(errors, null, 2)}</pre>
-    </form>
+            <ControlledPasswordInput
+              name="password"
+              control={control}
+              autoComplete="current-password"
+            />
+          </div>
+
+          <div className="text-right text-primary">
+            <Link href="/forgot-password">
+              <span className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+                Forgot Password?
+              </span>
+            </Link>
+          </div>
+
+          {/* <ErrorText styleClass="mt-8">{errorMessage}</ErrorText> */}
+          <button type="submit" className={"btn mt-2 w-full btn-primary"}>
+            Login
+          </button>
+
+          <div className="text-center mt-4">
+            Don&apos;t have an account yet?{" "}
+            <Link href="/register">
+              <span className="  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+                Register
+              </span>
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }

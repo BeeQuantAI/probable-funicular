@@ -17,5 +17,6 @@ const config: Config = {
   daisyui: {
     themes: ["light", "dark"],
   },
+  darkMode: ["selector", '[data-theme="dark"]'],
 };
 export default config;
