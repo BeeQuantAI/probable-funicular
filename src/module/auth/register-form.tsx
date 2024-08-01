@@ -45,6 +45,8 @@ export function RegisterForm() {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+    const { confirmPassword, realName, mobile, ...filteredData } = data;
+    action(filteredData);
   });
 
   return (
@@ -63,11 +65,16 @@ export function RegisterForm() {
         autoComplete="email"
       />
       <ControlledTextInput
-        label="Mobile"
+        label="Mobile (Not Allowed By Backend???)"
         name="mobile"
         control={control}
         leftElement={<Icon icon="person" />}
-        autoComplete="email"
+      />
+      <ControlledTextInput
+        label="Real Name (Not in Figma But Requested In CreateUserInput Schema, And Then Not Allowed By Backend???)"
+        name="realName"
+        control={control}
+        leftElement={<Icon icon="person" />}
       />
       <ControlledPasswordInput
         label="Password"
@@ -81,6 +88,7 @@ export function RegisterForm() {
         control={control}
         autoComplete="new-password"
       />
+
       <ControlledTextInput
         label="Reference"
         name="ref"

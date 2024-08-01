@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const schema = z.object({
-  GraphqlEndpoint: z.string().default("http://localhost:3100/graphql"),
+  GraphqlEndpoint: z.string().default("http://localhost:3000/graphql"),
 });
 
 type Env = keyof z.infer<typeof schema>;
