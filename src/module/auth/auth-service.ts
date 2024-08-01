@@ -33,8 +33,6 @@ export async function login(payload: LoginPayload) {
   const gqlClient = await getServerGqlClient();
   const { login } = await gqlClient.request(loginMutation, payload);
 
-  console.log(login);
-
   switch (login.code) {
     case 200:
       const data = authResultSchema.parse(login);

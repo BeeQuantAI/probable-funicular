@@ -19,12 +19,13 @@ export function ControlledTextInput<TFieldValues extends object>({
   ...props
 }: ControlledInputProps<TFieldValues>) {
   const {
-    field: { ref, ...field },
+    field,
     fieldState: { error },
   } = useController({
     name,
     control,
   });
+
   return (
     <label className="space-y-2">
       <span>{label}</span>
@@ -50,12 +51,13 @@ export function ControlledPasswordInput<TFieldValues extends object>({
   const [showPassword, toggleShowPassword] = useToggle(false);
 
   const {
-    field: { ref, ...field },
+    field,
     fieldState: { error },
   } = useController({
     name,
     control,
   });
+
   return (
     <label className="space-y-2">
       <span>{label}</span>
