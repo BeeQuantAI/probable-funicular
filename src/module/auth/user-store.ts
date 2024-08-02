@@ -13,6 +13,13 @@ const initialState = {
 export const useUser = create(
   persist(() => initialState, {
     name: "user-storage",
+    onRehydrateStorage: (state) => {
+      console.log(state);
+      return (state, error) => {
+        if (state?.user === null) fetchUserInfo();
+        console.dir(error);
+      };
+    },
   })
 );
 
