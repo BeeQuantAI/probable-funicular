@@ -19,5 +19,5 @@ export function AuthProvider({ children }: Props) {
     initUser();
   }, [setUser]);
 
-  return user ? <div>{children}</div> : <div>Loading...</div>;
+  return children;
 }
