@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { combine } from "zustand/middleware";
+import { combine, persist, createJSONStorage } from "zustand/middleware";
 
 type User = {
   id: string;
@@ -10,8 +10,14 @@ const initialState = {
 };
 
 export const useUser = create(
-  combine(initialState, (set) => ({
-    setUser: (user: User) => set({ user }),
-    clearUser: () => set({ user: null }),
-  }))
+  persist(
+    combine(initialState, (set) => ({
+      setUser: (user: User) => set({ user }),
+      clearUser: () => set({ user: null }),
+    })),
+    {
+      name: "user-storage", // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
 );
