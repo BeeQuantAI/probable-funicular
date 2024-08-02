@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Header from "@src/module/dashboard/components/header";
+import LeftSidebar from "@src/module/dashboard/components/left-sidebar";
 // import LeftSidebar from "@/containers/left-sidebar";
 // import RightSidebar from "@/containers/right-sidebar";
 // import ModalLayout from "@/containers/modal-layout";
@@ -20,7 +21,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
             <div className="h-16"></div>
           </main>
         </div>
-        {/* <LeftSidebar /> */}
+        <LeftSidebar />
       </div>
 
       {/* Right drawer - containing secondary content like notifications list etc.. */}
