@@ -1,13 +1,17 @@
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
+type User = {
+  id: string;
+  displayName?: string;
+};
 const initialState = {
-  user: null as string | null,
+  user: null as User | null,
 };
 
 export const useUser = create(
   combine(initialState, (set) => ({
-    setUser: (user: string) => set({ user }),
+    setUser: (user: User) => set({ user }),
     clearUser: () => set({ user: null }),
   }))
 );

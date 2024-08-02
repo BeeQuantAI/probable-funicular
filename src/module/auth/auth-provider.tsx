@@ -13,7 +13,7 @@ export function AuthProvider({ children }: Props) {
     async function initUser() {
       const { id, displayName } = await getUserInfo();
 
-      setUser(id);
+      setUser({ id, displayName });
     }
 
     initUser();
