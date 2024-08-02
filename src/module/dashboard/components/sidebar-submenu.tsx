@@ -7,14 +7,14 @@ import { useEffect, useState } from "react";
 
 type SidebarSubmenuProps = {
   path: string;
-  icon: JSX.Element; // Change this to typeof Squares2X2Icon | typeof InboxArrowDownIcon | ...
+  icon: JSX.Element;
   pageName: string;
   submenu?: SubmenuItem[];
 };
 
 type SubmenuItem = {
   path: string;
-  icon: any; // Change this to typeof Squares2X2Icon | typeof InboxArrowDownIcon | ...
+  icon: JSX.Element;
   pageName: string;
 };
 
@@ -29,7 +29,7 @@ function SidebarSubmenu({ submenu, pageName, icon }: SidebarSubmenuProps) {
   }, [submenu]);
 
   return (
-    <div className="flex flex-col hover:bg-base-100 bg-base-100">
+    <div className="flex flex-col hover:bg-base-50 bg-base-100 gap-0">
       {/** Route header */}
       <div className="w-full block" onClick={() => setIsExpanded(!isExpanded)}>
         {icon} {pageName}
@@ -42,7 +42,9 @@ function SidebarSubmenu({ submenu, pageName, icon }: SidebarSubmenuProps) {
       </div>
 
       {/** Submenu list */}
-      <div className={`w-full ${isExpanded ? "" : "hidden"}`}>
+      <div
+        className={`w-full transition-all duration-200 overflow-hidden ${isExpanded ? " max-h-56" : " max-h-0"}`}
+      >
         <ul className="menu menu-compact">
           {submenu &&
             submenu.map((m, k) => (

@@ -50,4 +50,16 @@ export const routes: SidebarMenuObj[] = [
       },
     ],
   },
+  {
+    path: "/dashboard/leads",
+    icon: <Icon icon="key" className={iconClasses} />,
+    pageName: "Leads",
+    pageTitle: "Leads",
+  },
+  {
+    path: "/dashboard/leads",
+    icon: <Icon icon="key" className={iconClasses} />,
+    pageName: "Leads",
+    pageTitle: "Leads",
+  },
 ];
