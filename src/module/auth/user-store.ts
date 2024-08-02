@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { combine, persist, createJSONStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
+import { getUserInfo } from "./auth-service";
 
 type User = {
   id: string;
@@ -10,14 +11,16 @@ const initialState = {
 };
 
 export const useUser = create(
-  persist(
-    combine(initialState, (set) => ({
-      setUser: (user: User) => set({ user }),
-      clearUser: () => set({ user: null }),
-    })),
-    {
-      name: "user-storage", // name of the item in the storage (must be unique)
-      storage: createJSONStorage(() => localStorage),
-    }
-  )
+  persist(() => initialState, {
+    name: "user-storage",
+  })
 );
+
+export const fetchUserInfo = async () => {
+  const { id, displayName } = await getUserInfo();
+  useUser.setState(() => ({ user: { id, displayName } }));
+};
+
+export const clearUser = () => {
+  useUser.setState(initialState);
+};
