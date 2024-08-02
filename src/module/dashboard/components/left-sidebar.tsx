@@ -86,7 +86,7 @@ function LeftSidebar(props: LeftSidebarProps) {
             </div>
           </div>
           {`hello ${user?.displayName}`}
-          <Icon icon="arrow-up" className="w-4 " />
+          <Icon icon="arrow-down" className="w-4 " />
         </div>
         <ul
           tabIndex={0}
