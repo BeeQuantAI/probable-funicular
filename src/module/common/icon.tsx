@@ -1,7 +1,12 @@
 import type { IconBaseProps } from "react-icons";
 import { GoEye, GoEyeClosed, GoKey, GoPerson } from "react-icons/go";
-import { AiOutlineMenu } from "react-icons/ai";
-import { MdSunny, MdModeNight } from "react-icons/md";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import {
+  MdSunny,
+  MdModeNight,
+  MdOutlineKeyboardArrowDown,
+  MdOutlineKeyboardArrowUp,
+} from "react-icons/md";
 const icons = {
   person: GoPerson,
   key: GoKey,
@@ -10,6 +15,9 @@ const icons = {
   menu: AiOutlineMenu,
   dayTime: MdSunny,
   nightTime: MdModeNight,
+  "arrow-down": MdOutlineKeyboardArrowDown,
+  "arrow-up": MdOutlineKeyboardArrowUp,
+  close: AiOutlineClose,
 };
 
 export type Icons = keyof typeof icons;
