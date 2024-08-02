@@ -7,7 +7,6 @@ type Props = {
 };
 export function AuthProvider({ children }: Props) {
   const user = useUser((s) => s.user);
-  console.log(user);
   useEffect(() => {
     //!TODO: init load can not get user form local storage lol... I can fix this shit now..
     if (!user) fetchUserInfo();
