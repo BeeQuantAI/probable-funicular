@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { login, LoginPayload } from './auth-service'
+import { Checkbox } from '../common/checkbox'
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -75,15 +76,28 @@ export function LoginForm() {
               </span>
             </Link>
           </div>
-
+          <div>
+            <Checkbox label='Remember me'/>
+          </div>
           {/* <ErrorText styleClass="mt-8">{errorMessage}</ErrorText> */}
-          <Button type='submit' variant='primary' textColor='white' animation='login-gradient' size='medium'>
+          <Button
+            type='submit'
+            variant='primary'
+            textColor='white'
+            animation='growing-bubble-tl-primary'
+            size='medium'
+          >
             Login
           </Button>
 
           <div className='text-center'>
             <Link href='/register'>
-              <Button variant='secondary' textColor='blue' size='medium' animation='register-gradient'>
+              <Button
+                variant='secondary'
+                textColor='blue'
+                size='medium'
+                animation='growing-bubble-tl-secondary'
+              >
                 Register
               </Button>
             </Link>
