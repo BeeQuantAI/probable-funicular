@@ -46,9 +46,9 @@ export function LoginForm() {
   });
 
   return (
-    <div className="card mx-auto w-full max-w-5xl shadow-slate-500 dark:shadow-sky-400  shadow-2xl min-h-96 py-4 flex justify-center items-center">
-      <div className=" mx-auto h-full">
-        <h2 className="text-2xl font-semibold mb-2 text-center">Login</h2>
+    <div className="card mx-auto flex min-h-96 w-full max-w-5xl items-center justify-center py-4 shadow-2xl shadow-slate-500 dark:shadow-sky-400">
+      <div className="mx-auto h-full">
+        <h2 className="mb-2 text-center text-2xl font-semibold">Login</h2>
         <form onSubmit={onSubmit}>
           {errors.root && (
             <span className="text-error">{errors.root.message}</span>
@@ -69,9 +69,9 @@ export function LoginForm() {
             />
           </div>
 
-          <div className="text-right text-primary">
+          <div className="text-primary text-right">
             <Link href="/forgot-password">
-              <span className="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+              <span className="hover:text-primary inline-block text-sm transition duration-200 hover:cursor-pointer hover:underline">
                 Forgot Password?
               </span>
             </Link>

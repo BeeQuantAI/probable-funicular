@@ -3,15 +3,7 @@ import React from "react";
 
 export interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
 const buttonVariants = cva(
-  [
-    "btn",
-    "overflow-hidden",
-    "relative",
-    "rounded",
-    "border",
-    "transition-all",
-    "duration-500",
-  ],
+  "relative overflow-hidden rounded border transition-all duration-500",
   {
     variants: {
       variant: {
@@ -19,13 +11,13 @@ const buttonVariants = cva(
         secondary: "transparent",
       },
       size: {
-        medium: "px-6 py-2.5 w-400 mb-5",
+        medium: "mb-5 w-400 px-6 py-2.5",
       },
       animation: {
         "growing-bubble-tl-primary":
-          " relative z-10 before:rounded-full before:absolute before:bg-primary-500 before:top-0 before:left-0 before:-translate-x-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:z-0 before:transition-width before:duration-500 before:ease-in-out before:transition-height before:duration-500 before:ease-in-out hover:before:-z-50 hover:before:w-btn-w-cover hover:before:h-btn-h-cover",
+          "before:transition-width before:transition-height relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-primary-500 before:duration-500 before:ease-in-out hover:before:-z-50 hover:before:h-btn-h-cover hover:before:w-btn-w-cover",
         "growing-bubble-tl-secondary":
-          "relative z-10 before:rounded-full before:absolute before:bg-primary-500 before:top-0 before:left-0 before:-translate-x-1/2 before:-translate-y-1/2 before:w-0 before:h-0 before:z-0 before:transition-width before:duration-500 before:ease-in-out before:transition-height before:duration-500 before:ease-in-out hover:before:-z-50 hover:text-white hover:before:w-btn-w-cover hover:before:h-btn-h-cover ",
+          "before:transition-width before:transition-height relative z-10 before:absolute before:left-0 before:top-0 before:z-0 before:h-0 before:w-0 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-primary-500 before:duration-500 before:ease-in-out hover:text-white hover:before:-z-50 hover:before:h-btn-h-cover hover:before:w-btn-w-cover",
       },
       intent: {
         default: "",
@@ -39,7 +31,7 @@ const buttonVariants = cva(
     defaultVariants: {
       intent: "default",
     },
-  }
+  },
 );
 
 type Props = {

@@ -21,11 +21,11 @@ export function ThemeSwitcher() {
       <input type="checkbox" onClick={handleThemeChange} />
       <Icon
         icon="dayTime"
-        className={`w-6 h-6 ${theme === "dark" ? "swap-on" : "swap-off"}`}
+        className={`h-6 w-6 ${theme === "dark" ? "swap-on" : "swap-off"}`}
       />
       <Icon
         icon="nightTime"
-        className={`w-6 h-6 ${theme === "dark" ? "swap-off" : "swap-on"}`}
+        className={`h-6 w-6 ${theme === "dark" ? "swap-off" : "swap-on"}`}
       />
     </label>
   );

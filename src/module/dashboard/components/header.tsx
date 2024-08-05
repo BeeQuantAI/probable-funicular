@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 function Header() {
   const pathname = usePathname();
   return (
-    <div className="navbar sticky top-0 bg-base-100 z-10 shadow-md">
+    <div className="navbar bg-base-100 sticky top-0 z-10 shadow-md">
       {/* Menu toggle for mobile view or small screen */}
       <div className="flex-1">
         <label
@@ -18,7 +18,7 @@ function Header() {
         >
           <Icon icon="menu" />
         </label>
-        <h1 className="text-2xl font-semibold ml-2">{pathname}</h1>
+        <h1 className="ml-2 text-2xl font-semibold">{pathname}</h1>
       </div>
 
       <div className="flex-none">

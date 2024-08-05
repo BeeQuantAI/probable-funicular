@@ -29,7 +29,7 @@ const labelVariants = cva(
       size: "small",
       fontWeight: "normal",
     },
-  }
+  },
 );
 
 type LabelProps = {

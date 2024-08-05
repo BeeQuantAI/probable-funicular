@@ -20,7 +20,7 @@ export const useUser = create(
         console.dir(error);
       };
     },
-  })
+  }),
 );
 
 export const fetchUserInfo = async () => {

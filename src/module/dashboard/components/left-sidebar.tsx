@@ -25,15 +25,15 @@ function LeftSidebar(props: LeftSidebarProps) {
   return (
     <div className="drawer-side z-30 overflow-hidden">
       <label htmlFor="left-sidebar-drawer" className="drawer-overlay"></label>
-      <ul className="menu pt-2 w-80 bg-base-100 min-h-full text-base-content">
+      <ul className="menu bg-base-100 text-base-content min-h-full w-80 pt-2">
         <button
-          className="btn btn-ghost bg-base-300 btn-circle z-50 top-0 right-0 mt-4 mr-2 absolute lg:hidden"
+          className="btn btn-ghost bg-base-300 btn-circle absolute right-0 top-0 z-50 mr-2 mt-4 lg:hidden"
           onClick={close}
         >
-          <Icon icon="close" className="h-5 inline-block w-5" />
+          <Icon icon="close" className="inline-block h-5 w-5" />
         </button>
 
-        <li className="mb-2 font-semibold text-xl">
+        <li className="mb-2 text-xl font-semibold">
           <Link href="/welcome">
             <img
               className="mask mask-squircle w-10"
@@ -48,7 +48,7 @@ function LeftSidebar(props: LeftSidebarProps) {
           </Link>
         </li>
         <div
-          className="overflow-y-scroll pb-20 no-scrollbar"
+          className="no-scrollbar overflow-y-scroll pb-20"
           style={{ height: "85vh" }}
         >
           {routes.map((route, k: number) => (
@@ -58,12 +58,12 @@ function LeftSidebar(props: LeftSidebarProps) {
               ) : (
                 <Link
                   href={route.path}
-                  className={`${pathname == route.path ? "font-semibold bg-base-200 " : "font-normal"}`}
+                  className={`${pathname == route.path ? "bg-base-200 font-semibold" : "font-normal"}`}
                 >
                   {route.icon} {route.pageName}
                   {pathname === route.path ? (
                     <span
-                      className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary"
+                      className="bg-primary absolute inset-y-0 left-0 w-1 rounded-br-md rounded-tr-md"
                       aria-hidden="true"
                     ></span>
                   ) : null}
@@ -74,11 +74,11 @@ function LeftSidebar(props: LeftSidebarProps) {
         </div>
       </ul>
       {/* Profile icon, opening menu on click */}
-      <div className="dropdown bottom-0 absolute dropdown-top w-80 ">
+      <div className="dropdown dropdown-top absolute bottom-0 w-80">
         <div
           tabIndex={0}
           role="button"
-          className="btn w-full bg-base-100 text-left justify-start "
+          className="btn bg-base-100 w-full justify-start text-left"
         >
           <div className="avatar">
             <div className="w-6 rounded-full">
@@ -86,22 +86,22 @@ function LeftSidebar(props: LeftSidebarProps) {
             </div>
           </div>
           {`hello ${user?.displayName}`}
-          <Icon icon="arrow-down" className="w-4 " />
+          <Icon icon="arrow-down" className="w-4" />
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content visible w-52 px-4 z-[1]  menu  shadow bg-base-200 rounded-box "
+          className="dropdown-content menu bg-base-200 rounded-box visible z-[1] w-52 px-4 shadow"
         >
           <li className="">
             <Link href={"/settings/billing"}>
-              <Icon icon="key" className="w-4 " />
+              <Icon icon="key" className="w-4" />
               Bill History
             </Link>
           </li>
-          <div className="divider py-2 m-0"></div>
+          <div className="divider m-0 py-2"></div>
           <li>
             <a className=" ">
-              <Icon icon="key" className="w-4 " />
+              <Icon icon="key" className="w-4" />
               Logout
             </a>
           </li>

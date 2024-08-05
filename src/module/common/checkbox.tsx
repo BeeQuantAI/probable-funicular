@@ -1,27 +1,12 @@
-import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import React from "react";
 import { Label } from "./label";
 
 export interface CheckboxVariants
   extends VariantProps<typeof checkboxVariants> {}
 
 const checkboxVariants = cva(
-  [
-    "appearance-none",
-    "size-[18px]",
-    "bg-transparent",
-    "border",
-    "border-solid",
-    "rounded",
-    "focus:outline-none",
-    "focus:ring-0",
-    "focus:ring-offset-0",
-    "cursor-pointer",
-    "peer",
-    "transition-all",
-    "duration-500",
-    "group-hover:border-primary-300",
-  ],
+  "peer size-[18px] cursor-pointer appearance-none rounded border border-solid bg-transparent transition-all duration-500 focus:outline-none focus:ring-0 focus:ring-offset-0 group-hover:border-primary-300",
   {
     variants: {
       variant: {
@@ -35,7 +20,7 @@ const checkboxVariants = cva(
       variant: "primary",
       size: "small",
     },
-  }
+  },
 );
 
 const svgVariants = cva(
@@ -56,7 +41,7 @@ const svgVariants = cva(
     defaultVariants: {
       variant: "primary",
     },
-  }
+  },
 );
 
 type CheckboxProps = {
@@ -72,7 +57,7 @@ export function Checkbox({
   ...props
 }: CheckboxProps) {
   return (
-    <label className="flex items-center gap-2 group">
+    <label className="group flex items-center gap-2">
       <div className="relative flex items-center">
         <input
           className={checkboxVariants({ variant })}
