@@ -58,7 +58,17 @@ export function Button({
   ...props
 }: Props) {
   return (
-    <button className={buttonVariants({ intent })} {...props}>
+    <button
+      className={buttonVariants({
+        variant,
+        intent,
+        size,
+        animation,
+        textColor,
+      })}
+      type={type}
+      {...props}
+    >
       {children}
     </button>
   );

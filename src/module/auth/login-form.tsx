@@ -1,6 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  Button,
   ControlledPasswordInput,
   ControlledTextInput,
   Icon,
@@ -9,6 +10,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { login, LoginPayload } from "./auth-service";
+import { Checkbox } from "../common/checkbox";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -74,18 +76,30 @@ export function LoginForm() {
               </span>
             </Link>
           </div>
-
+          <div>
+            <Checkbox label="Remember me" />
+          </div>
           {/* <ErrorText styleClass="mt-8">{errorMessage}</ErrorText> */}
-          <button type="submit" className={"btn mt-2 w-full btn-primary"}>
+          <Button
+            type="submit"
+            variant="primary"
+            textColor="white"
+            animation="growing-bubble-tl-primary"
+            size="medium"
+          >
             Login
-          </button>
+          </Button>
 
-          <div className="text-center mt-4">
-            Don&apos;t have an account yet?{" "}
+          <div className="text-center">
             <Link href="/register">
-              <span className="  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+              <Button
+                variant="secondary"
+                textColor="blue"
+                size="medium"
+                animation="growing-bubble-tl-secondary"
+              >
                 Register
-              </span>
+              </Button>
             </Link>
           </div>
         </form>
