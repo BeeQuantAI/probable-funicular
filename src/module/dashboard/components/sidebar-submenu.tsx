@@ -29,13 +29,13 @@ function SidebarSubmenu({ submenu, pageName, icon }: SidebarSubmenuProps) {
   }, [submenu]);
 
   return (
-    <div className="flex flex-col hover:bg-base-50 bg-base-100 gap-0">
+    <div className="hover:bg-base-50 bg-base-100 flex flex-col gap-0">
       {/** Route header */}
-      <div className="w-full block" onClick={() => setIsExpanded(!isExpanded)}>
+      <div className="block w-full" onClick={() => setIsExpanded(!isExpanded)}>
         {icon} {pageName}
         <Icon
           icon="arrow-down"
-          className={`w-5 h-5 mt-1 float-right delay-400 duration-500 transition-all ${
+          className={`delay-400 float-right mt-1 h-5 w-5 transition-all duration-500 ${
             isExpanded ? "rotate-180" : ""
           }`}
         />
@@ -43,7 +43,7 @@ function SidebarSubmenu({ submenu, pageName, icon }: SidebarSubmenuProps) {
 
       {/** Submenu list */}
       <div
-        className={`w-full transition-all duration-200 overflow-hidden ${isExpanded ? " max-h-56" : " max-h-0"}`}
+        className={`w-full overflow-hidden transition-all duration-200 ${isExpanded ? "max-h-56" : "max-h-0"}`}
       >
         <ul className="menu menu-compact">
           {submenu &&
@@ -51,12 +51,12 @@ function SidebarSubmenu({ submenu, pageName, icon }: SidebarSubmenuProps) {
               <li key={k}>
                 <Link
                   href={m.path}
-                  className={`${pathname == m.path ? "font-semibold bg-base-200" : ""}`}
+                  className={`${pathname == m.path ? "bg-base-200 font-semibold" : ""}`}
                 >
                   {m.icon} {m.pageName}
                   {pathname === m.path ? (
                     <span
-                      className="absolute mt-1 mb-1 inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary"
+                      className="bg-primary absolute inset-y-0 left-0 mb-1 mt-1 w-1 rounded-br-md rounded-tr-md"
                       aria-hidden="true"
                     ></span>
                   ) : null}
